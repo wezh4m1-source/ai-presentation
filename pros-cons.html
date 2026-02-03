@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI: Pros and Cons</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --text: #334155;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('Ai_iPhone_Wallpaper_4K.jpg') center/cover fixed;
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 4em;
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .section:nth-child(3) { animation-delay: 0.1s; }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 1.25em;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-pros {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-pros:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-cons {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .btn-cons:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
+        }
+
+        .content-hidden {
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .content-visible {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .point {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            display: flex;
+            align-items: start;
+            gap: 20px;
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+        }
+
+        .point:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .pros-section .point {
+            border-left-color: var(--success);
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        }
+
+        .cons-section .point {
+            border-left-color: var(--danger);
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        }
+
+        .emoji {
+            font-size: 2.5em;
+            flex-shrink: 0;
+        }
+
+        .point-text {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .example {
+            font-style: italic;
+            color: #64748b;
+            font-size: 1em;
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                max-height: 0;
+            }
+            to {
+                opacity: 1;
+                max-height: 5000px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            h2 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .btn {
+                width: 100%;
+                padding: 15px 30px;
+            }
+            
+            .point {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚖️ AI: Pros and Cons</h1>
+            <p class="subtitle">Good Things and Bad Things</p>
+        </header>
+
+        <section class="section">
+            <h2>Choose What to See:</h2>
+            
+            <div class="button-container">
+                <button class="btn btn-pros" onclick="togglePros()">
+                    <span>✨ Show Good Things (Pros)</span>
+                </button>
+                <button class="btn btn-cons" onclick="toggleCons()">
+                    <span>⚠️ Show Bad Things (Cons)</span>
+                </button>
+            </div>
+
+            <div id="prosContent" class="content-hidden pros-section">
+                <h3 style="color: #10b981;">✨ Good Things About AI (Pros)</h3>
+                
+                <div class="point">
+                    <span class="emoji">⚡</span>
+                    <div>
+                        <div class="point-text">AI is very fast</div>
+                        <div class="example">AI can read 1,000 pages in one second!</div>
+                    </div>
+                </div>
+
+                <div class="point">
+                    <span class="emoji">🏥</span>
+                    <div>
+                        <div class="point-text">AI helps doctors</div>
+                        <div class="example">AI can find sickness in the body and help people feel better</div>
+                    </div>
+                </div>
+
+                <div class="point">
+                    <span class="emoji">🎓</span>
+                    <div>
+                        <div class="point-text">AI helps students learn</div>
+                        <div class="example">AI can teach math, languages, and many subjects</div>
+                    </div>
+                </div>
+
+                <div class="point">
+                    <span class="emoji">🚗</span>
+                    <div>
+                        <div class="point-text">AI makes life easier</div>
+                        <div class="example">AI can drive cars, translate languages, and do boring work for us</div>
+                    </div>
+                </div>
+
+                <div class="point">
+                    <span class="emoji">🌍</span>
+                    <div>
+                        <div class="point-text">AI helps save our planet</div>
+                        <div class="example">AI can find ways to use less energy and make clean water</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="consContent" class="content-hidden cons-section">
+                <h3 style="color: #ef4444;">⚠️ Bad Things About AI (Cons)</h3>
+                
+                <div class="point">
+                    <span class="emoji">💼</span>
+                    <div>
+                        <div class="point-text">Some people can lose their jobs</div>
+                        <div class="example">When AI does the work, people don't have work to do</div>
+                    </div>
+                </div>
+
+                <div class="point">
+                    <span class="emoji">🔒</span>
+                    <div>
+                        <div class="point-text">AI can see private information</div>
+                        <div class="example">AI knows many things about us - where we go, what we buy</div>
+                    </div>
+                </div>
+
+                <div class="point">
+                    <span class="emoji">❌</span>
+                    <div>
+                        <div class="point-text">AI can make mistakes</div>
+                        <div class="example">Sometimes AI gives wrong answers or does bad things</div>
+                    </div>
+                </div>
+
+                <div class="point">
+                    <span class="emoji">💰</span>
+                    <div>
+                        <div class="point-text">AI is expensive</div>
+                        <div class="example">Not everyone can buy or use good AI</div>
+                    </div>
+                </div>
+
+                <div class="point">
+                    <span class="emoji">😟</span>
+                    <div>
+                        <div class="point-text">People worry about the future</div>
+                        <div class="example">What happens if AI becomes too smart? Can we control it?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-container" style="margin-top: 40px;">
+                <button class="btn" onclick="window.location.href='prompts.html'" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%); color: white;">
+                    <span>← Back: Prompts</span>
+                </button>
+                <button class="btn" onclick="window.location.href='conclusion.html'" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white;">
+                    <span>Next: Conclusion →</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let prosVisible = false;
+        let consVisible = false;
+
+        function togglePros() {
+            const prosContent = document.getElementById('prosContent');
+            prosVisible = !prosVisible;
+            
+            if (prosVisible) {
+                prosContent.className = 'content-visible pros-section';
+            } else {
+                prosContent.className = 'content-hidden pros-section';
+            }
+        }
+
+        function toggleCons() {
+            const consContent = document.getElementById('consContent');
+            consVisible = !consVisible;
+            
+            if (consVisible) {
+                consContent.className = 'content-visible cons-section';
+            } else {
+                consContent.className = 'content-hidden cons-section';
+            }
+        }
+    </script>
+</body>
+</html>
