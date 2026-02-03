@@ -134,7 +134,7 @@
 
         <section class="section">
             <h2>What is a Prompt?</h2>
-            <p>A <strong>Prompt</strong> is the instruction you give to an AI. Being specific helps you get the right answer!</p>
+            <p>A <strong>Prompt</strong> is the instruction or question you give to an AI. A good prompt is clear and specific!</p>
             
             <div class="button-container">
                 <button class="btn btn-bad" onclick="showBad()">❌ Show Bad Prompt</button>
@@ -144,7 +144,7 @@
             <div id="badSection" class="content-hidden">
                 <div class="prompt-example bad-box">
                     <strong>❌ Bad Prompt Example:</strong>
-                    <div class="prompt-text">"Translate (I Have 2 siblings) to kurdish"</div>
+                    <div class="prompt-text">"Translate ( I Have 2 siblings) to kurdish"</div>
                     <p style="color: #991b1b; margin-top:10px;">
                         <strong>Problem:</strong> This is not specific. The AI doesn't know if you want Sorani or Kurmanji Kurdish!
                     </p>
@@ -162,19 +162,25 @@
             </div>
 
             <div class="button-container" style="margin-top: 50px;">
-                <button class="btn" onclick="window.location.href='ai-presentation.html'" style="background: #6b7280;">← Back</button>
-                <button class="btn" onclick="window.location.href='pros-cons.html'" style="background: var(--warning);">Next: Pros and Cons →</button>
+                <button class="btn" onclick="window.location.href='ai-presentation.html'" style="background: #6b7280;">
+                    <span>← Back: What is AI?</span>
+                </button>
+                <button class="btn" onclick="window.location.href='pros-cons.html'" style="background: var(--warning);">
+                    <span>Next: Pros and Cons →</span>
+                </button>
             </div>
         </section>
     </div>
 
     <script>
         function showBad() {
+            // Hide Good, Show Bad
             document.getElementById('goodSection').style.display = 'none';
             document.getElementById('badSection').style.display = 'block';
         }
 
         function showGood() {
+            // Hide Bad, Show Good
             document.getElementById('badSection').style.display = 'none';
             document.getElementById('goodSection').style.display = 'block';
         }
