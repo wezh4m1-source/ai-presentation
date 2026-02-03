@@ -210,6 +210,47 @@
                     ❌ Unclear Prompt → Unclear or Bad Answer<br>
                     ✅ Clear Prompt → Better Answer
                 </p>
+                <div class="button-container">
+    <button class="btn btn-cons" onclick="toggleBadPrompts()">
+        <span>❌ Show Bad Prompts</span>
+    </button>
+    <button class="btn btn-pros" onclick="toggleGoodPrompts()">
+        <span>✅ Show Good Prompts</span>
+    </button>
+</div>
+
+<div id="badPromptsContent" class="content-hidden">
+    <div class="prompt-example bad-prompt">
+        <div class="prompt-label"><span>❌</span> Bad Prompt</div>
+        <div class="prompt-text">Translate (I have 2 siblings) to Kurdish</div>
+        <p class="example">Problem: It is too simple. The AI doesn't know if you want Sorani or Kurmanji.</p>
+    </div>
+</div>
+
+<div id="goodPromptsContent" class="content-hidden">
+    <div class="prompt-example good-prompt">
+        <div class="prompt-label"><span>✅</span> Good Prompt</div>
+        <div class="prompt-text">Translate this sentence to Kurdish Sorani: (I have 2 siblings)</div>
+        <p class="example">Result: Clear and specific! The AI knows exactly what to do.</p>
+    </div>
+</div>
+
+<script>
+    let badVisible = false;
+    let goodVisible = false;
+
+    function toggleBadPrompts() {
+        const content = document.getElementById('badPromptsContent');
+        badVisible = !badVisible;
+        content.className = badVisible ? 'content-visible' : 'content-hidden';
+    }
+
+    function toggleGoodPrompts() {
+        const content = document.getElementById('goodPromptsContent');
+        goodVisible = !goodVisible;
+        content.className = goodVisible ? 'content-visible' : 'content-hidden';
+    }
+</script>
             </div>
 
             <h3>Example:</h3>
