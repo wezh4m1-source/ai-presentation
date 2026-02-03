@@ -40,7 +40,6 @@
         header {
             text-align: center;
             margin-bottom: 50px;
-            animation: fadeInDown 0.8s ease-out;
         }
 
         h1 {
@@ -54,7 +53,6 @@
         .subtitle {
             font-size: 1.5em;
             color: rgba(255,255,255,0.9);
-            font-weight: 400;
         }
 
         .section {
@@ -63,30 +61,12 @@
             padding: 40px;
             margin-bottom: 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            animation: fadeInUp 0.8s ease-out;
         }
 
         h2 {
             font-size: 2.5em;
             margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
             color: var(--dark);
-            font-weight: 700;
-        }
-
-        h3 {
-            font-size: 1.8em;
-            margin: 30px 0 20px 0;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        p {
-            font-size: 1.25em;
-            margin-bottom: 20px;
-            line-height: 1.8;
         }
 
         .button-container {
@@ -105,90 +85,36 @@
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: white;
         }
 
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
+        .btn-bad { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+        .btn-good { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+
+        .content-hidden { display: none; }
+        .content-visible { display: block; animation: fadeIn 0.5s ease; }
 
         .prompt-example {
-            background: #f1f5f9;
             padding: 20px;
             border-radius: 12px;
             margin: 15px 0;
-            border-left: 4px solid var(--primary);
+            border-left: 5px solid;
         }
 
-        .bad-prompt {
-            background: #fee2e2;
-            border-left-color: var(--danger);
-        }
-
-        .good-prompt {
-            background: #d1fae5;
-            border-left-color: var(--success);
-        }
-
-        .prompt-label {
-            font-weight: 700;
-            font-size: 1.1em;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .bad-box { background: #fee2e2; border-color: var(--danger); }
+        .good-box { background: #d1fae5; border-color: var(--success); }
 
         .prompt-text {
             font-family: 'Space Mono', monospace;
-            font-size: 1.1em;
-            padding: 15px;
             background: white;
+            padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-            
-            h2 {
-                font-size: 2em;
-            }
-            
-            .section {
-                padding: 25px;
-            }
-            
-            .btn {
-                width: 100%;
-                padding: 15px 30px;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -201,99 +127,45 @@
 
         <section class="section">
             <h2>What is a Prompt?</h2>
-            <p><strong>Prompt</strong> is the instruction or text you give to an AI to tell it what you want.</p>
-            <p>A good prompt gives you a good answer. A bad prompt gives you a bad answer.</p>
-
-            <h3>The Rule:</h3>
-            <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); padding: 25px; border-radius: 15px; margin: 20px 0;">
-                <p style="font-size: 1.4em; font-weight: 600; text-align: center; margin: 0;">
-                    ❌ Unclear Prompt → Unclear or Bad Answer<br>
-                    ✅ Clear Prompt → Better Answer
-                </p>
-                <div class="button-container">
-    <button class="btn btn-cons" onclick="toggleBadPrompts()">
-        <span>❌ Show Bad Prompts</span>
-    </button>
-    <button class="btn btn-pros" onclick="toggleGoodPrompts()">
-        <span>✅ Show Good Prompts</span>
-    </button>
-</div>
-
-<div id="badPromptsContent" class="content-hidden">
-    <div class="prompt-example bad-prompt">
-        <div class="prompt-label"><span>❌</span> Bad Prompt</div>
-        <div class="prompt-text">Translate (I have 2 siblings) to Kurdish</div>
-        <p class="example">Problem: It is too simple. The AI doesn't know if you want Sorani or Kurmanji.</p>
-    </div>
-</div>
-
-<div id="goodPromptsContent" class="content-hidden">
-    <div class="prompt-example good-prompt">
-        <div class="prompt-label"><span>✅</span> Good Prompt</div>
-        <div class="prompt-text">Translate this sentence to Kurdish Sorani: (I have 2 siblings)</div>
-        <p class="example">Result: Clear and specific! The AI knows exactly what to do.</p>
-    </div>
-</div>
-
-<script>
-    let badVisible = false;
-    let goodVisible = false;
-
-    function toggleBadPrompts() {
-        const content = document.getElementById('badPromptsContent');
-        badVisible = !badVisible;
-        content.className = badVisible ? 'content-visible' : 'content-hidden';
-    }
-
-    function toggleGoodPrompts() {
-        const content = document.getElementById('goodPromptsContent');
-        goodVisible = !goodVisible;
-        content.className = goodVisible ? 'content-visible' : 'content-hidden';
-    }
-</script>
-            </div>
-
-            <h3>Example:</h3>
-            
-            <div class="prompt-example bad-prompt">
-                <div class="prompt-label">
-                    <span>❌</span>
-                    <span>Bad Prompt</span>
-                </div>
-                <div class="prompt-text">
-                    Translate (I have 2 siblings) to Kurdish
-                </div>
-                <p style="margin-top: 15px; color: #991b1b; font-weight: 600;">
-                    Problem: Which Kurdish? Sorani or Kurmanji? The AI doesn't know!
-                </p>
-            </div>
-
-            <div class="prompt-example good-prompt">
-                <div class="prompt-label">
-                    <span>✅</span>
-                    <span>Good Prompt</span>
-                </div>
-                <div class="prompt-text">
-                    Translate this sentence to Kurdish Sorani: (I have 2 siblings)
-                </div>
-                <p style="margin-top: 15px; color: #065f46; font-weight: 600;">
-                    Clear! The AI knows exactly what to do!
-                </p>
-            </div>
-
-            <p style="margin-top: 30px; font-weight: 600; font-size: 1.3em; color: var(--primary);">
-                💡 Remember: Be clear and specific when you talk to AI!
-            </p>
+            <p>A <strong>Prompt</strong> is the instruction you give to an AI.</p>
             
             <div class="button-container">
-                <button class="btn" onclick="window.location.href='index.html'" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%); color: white;">
-                    <span>← Back: What is AI?</span>
-                </button>
-                <button class="btn" onclick="window.location.href='pros-cons.html'" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white;">
-                    <span>Next: Pros and Cons →</span>
-                </button>
+                <button class="btn btn-bad" onclick="toggleBad()">❌ Show Bad Prompts</button>
+                <button class="btn btn-good" onclick="toggleGood()">✅ Show Good Prompts</button>
+            </div>
+
+            <div id="badSection" class="content-hidden">
+                <div class="prompt-example bad-box">
+                    <strong>❌ Bad Prompt Example:</strong>
+                    <div class="prompt-text">"Translate (I have 2 siblings) to Kurdish"</div>
+                    <p style="color: #991b1b; margin-top:10px;">Problem: The AI doesn't know if you want Sorani or Kurmanji!</p>
+                </div>
+            </div>
+
+            <div id="goodSection" class="content-hidden">
+                <div class="prompt-example good-box">
+                    <strong>✅ Good Prompt Example:</strong>
+                    <div class="prompt-text">"Translate this sentence to Kurdish Sorani: (I have 2 siblings)"</div>
+                    <p style="color: #065f46; margin-top:10px;">Result: Clear and specific! The AI knows exactly what to do.</p>
+                </div>
+            </div>
+
+            <div class="button-container" style="margin-top: 50px;">
+                <button class="btn" onclick="window.location.href='ai-presentation.html'" style="background: #6b7280;">← Back</button>
+                <button class="btn" onclick="window.location.href='pros-cons.html'" style="background: var(--warning);">Next: Pros and Cons →</button>
             </div>
         </section>
     </div>
+
+    <script>
+        function toggleBad() {
+            document.getElementById('badSection').classList.toggle('content-hidden');
+            document.getElementById('badSection').classList.toggle('content-visible');
+        }
+        function toggleGood() {
+            document.getElementById('goodSection').classList.toggle('content-hidden');
+            document.getElementById('goodSection').classList.toggle('content-visible');
+        }
+    </script>
 </body>
 </html>
