@@ -134,7 +134,7 @@
 
         <section class="section">
             <h2>What is a Prompt?</h2>
-            <p>A <strong>Prompt</strong> is the instruction or question you give to an AI. A good prompt is clear and specific!</p>
+            <p>A <strong>Prompt</strong> is the instruction you give to an AI. Being specific helps you get the right answer!</p>
             
             <div class="button-container">
                 <button class="btn btn-bad" onclick="showBad()">❌ Show Bad Prompt</button>
@@ -144,9 +144,9 @@
             <div id="badSection" class="content-hidden">
                 <div class="prompt-example bad-box">
                     <strong>❌ Bad Prompt Example:</strong>
-                    <div class="prompt-text">"Translate ( I Have 2 siblings) to kurdish."</div>
+                    <div class="prompt-text">"Translate (I Have 2 siblings) to kurdish"</div>
                     <p style="color: #991b1b; margin-top:10px;">
-                        <strong>Problem:</strong> Problem: Which Kurdish? Sorani or Kurmanji? The AI doesn't know!
+                        <strong>Problem:</strong> This is not specific. The AI doesn't know if you want Sorani or Kurmanji Kurdish!
                     </p>
                 </div>
             </div>
@@ -154,9 +154,9 @@
             <div id="goodSection" class="content-hidden">
                 <div class="prompt-example good-box">
                     <strong>✅ Good Prompt Example:</strong>
-                    <div class="prompt-text">"Translate this sentence to kurdish sorani (I Have 2 siblings)."</div>
+                    <div class="prompt-text">"Translate this sentence to kurdish sorani (I Have 2 siblings)"</div>
                     <p style="color: #065f46; margin-top:10px;">
-                        <strong>Result:</strong>Clear! The AI knows exactly what to do!
+                        <strong>Result:</strong> Perfect! You told the AI exactly which language and dialect you need.
                     </p>
                 </div>
             </div>
@@ -170,13 +170,11 @@
 
     <script>
         function showBad() {
-            // Hide Good, Show Bad
             document.getElementById('goodSection').style.display = 'none';
             document.getElementById('badSection').style.display = 'block';
         }
 
         function showGood() {
-            // Hide Bad, Show Good
             document.getElementById('badSection').style.display = 'none';
             document.getElementById('goodSection').style.display = 'block';
         }
