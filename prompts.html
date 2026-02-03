@@ -86,6 +86,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
         }
 
         .btn-bad { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
@@ -110,6 +116,7 @@
             padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
+            font-weight: bold;
         }
 
         @keyframes fadeIn {
@@ -127,26 +134,30 @@
 
         <section class="section">
             <h2>What is a Prompt?</h2>
-            <p>A <strong>Prompt</strong> is the instruction you give to an AI.</p>
+            <p>A <strong>Prompt</strong> is the instruction or question you give to an AI. A good prompt is clear and specific!</p>
             
             <div class="button-container">
-                <button class="btn btn-bad" onclick="toggleBad()">❌ Show Bad Prompts</button>
-                <button class="btn btn-good" onclick="toggleGood()">✅ Show Good Prompts</button>
+                <button class="btn btn-bad" onclick="showBad()">❌ Show Bad Prompt</button>
+                <button class="btn btn-good" onclick="showGood()">✅ Show Good Prompt</button>
             </div>
 
             <div id="badSection" class="content-hidden">
                 <div class="prompt-example bad-box">
                     <strong>❌ Bad Prompt Example:</strong>
-                    <div class="prompt-text">"Translate (I have 2 siblings) to Kurdish"</div>
-                    <p style="color: #991b1b; margin-top:10px;">Problem: The AI doesn't know if you want Sorani or Kurmanji!</p>
+                    <div class="prompt-text">"Write about a car."</div>
+                    <p style="color: #991b1b; margin-top:10px;">
+                        <strong>Problem:</strong> Too simple! The AI doesn't know what kind of car or if you want a story, a list, or a history lesson.
+                    </p>
                 </div>
             </div>
 
             <div id="goodSection" class="content-hidden">
                 <div class="prompt-example good-box">
                     <strong>✅ Good Prompt Example:</strong>
-                    <div class="prompt-text">"Translate this sentence to Kurdish Sorani: (I have 2 siblings)"</div>
-                    <p style="color: #065f46; margin-top:10px;">Result: Clear and specific! The AI knows exactly what to do.</p>
+                    <div class="prompt-text">"Write a short story about a fast red sports car for kids."</div>
+                    <p style="color: #065f46; margin-top:10px;">
+                        <strong>Result:</strong> Excellent! You told the AI the color, the type of car, and who the story is for.
+                    </p>
                 </div>
             </div>
 
@@ -158,13 +169,16 @@
     </div>
 
     <script>
-        function toggleBad() {
-            document.getElementById('badSection').classList.toggle('content-hidden');
-            document.getElementById('badSection').classList.toggle('content-visible');
+        function showBad() {
+            // Hide Good, Show Bad
+            document.getElementById('goodSection').style.display = 'none';
+            document.getElementById('badSection').style.display = 'block';
         }
-        function toggleGood() {
-            document.getElementById('goodSection').classList.toggle('content-hidden');
-            document.getElementById('goodSection').classList.toggle('content-visible');
+
+        function showGood() {
+            // Hide Bad, Show Good
+            document.getElementById('badSection').style.display = 'none';
+            document.getElementById('goodSection').style.display = 'block';
         }
     </script>
 </body>
